@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/LoginFragment">
+
+    <action
+        android:id="@+id/action_global_confirmationDialog"
+        app:destination="@id/confirmationDialog" />
+    <dialog
+        android:id="@+id/confirmationDialog"
+        android:name="com.carpenter.login.confirmationDialog.ConfirmationDialog"
+        android:label="dialog_confirmation"
+        tools:layout="@layout/dialog_confirmation">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="content"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="positiveLabel"
+            app:argType="string" />
+        <argument
+            android:name="negativeLabel"
+            app:argType="string" />
+        <argument
+            android:name="resultKey"
+            app:argType="string" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.carpenter.login.loginScreen.LoginFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_phoneLoginFragment"
+            app:destination="@id/phoneLoginFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_emailSignUpFragment"
+            app:destination="@id/emailSignUpFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_emailVerificationFragment"
+            app:destination="@id/emailVerificationFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"
+            app:popUpTo="@id/LoginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_accountRecoveryFragment"
+            app:destination="@id/accountRecoveryFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneLoginFragment"
+        android:name="com.carpenter.login.phoneLoginScreen.PhoneLoginFragment"
+        android:label="fragment_phone_login"
+        tools:layout="@layout/fragment_phone_login" />
+    <fragment
+        android:id="@+id/emailSignUpFragment"
+        android:name="com.carpenter.login.emailSignUpScreen.EmailSignUpFragment"
+        android:label="fragment_email_sign_up"
+        tools:layout="@layout/fragment_email_sign_up">
+        <action
+            android:id="@+id/action_emailSignUpFragment_to_emailVerificationFragment"
+            app:destination="@id/emailVerificationFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"
+            app:popUpTo="@id/LoginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountRecoveryFragment"
+        android:name="com.carpenter.login.accountRecoveryScreen.AccountRecoveryFragment"
+        android:label="fragment_account_recovery"
+        tools:layout="@layout/fragment_account_recovery" />
+    <fragment
+        android:id="@+id/emailVerificationFragment"
+        android:name="com.carpenter.login.emailVerification.EmailVerificationFragment"
+        android:label="fragment_email_verification"
+        tools:layout="@layout/fragment_email_verification">
+        <action
+            android:id="@+id/action_emailVerificationFragment_to_loginFragment"
+            app:destination="@id/LoginFragment"
+            app:enterAnim="@anim/from_left_to_center"
+            app:exitAnim="@anim/from_center_to_right"
+            app:popUpTo="@id/emailVerificationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

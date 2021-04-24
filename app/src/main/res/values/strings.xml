@@ -1,0 +1,67 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Carpenter Login</string>
+    <string name="app_description">A Login Template illustrating login best practices in Android development</string>
+    <string name="continue_with_twitter">Continue with Twitter</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_phone">Continue with Phone</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="a_verification_code_will_be_sent_to_your_phone">A verification code will be sent to your phone.</string>
+    <string name="sign_up_with_email">Sign Up with Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="do_not_have_account_sign_up_instead">Don\'t have Account? Sign up instead.</string>
+    <string name="recover_your_account">Recover your Account</string>
+    <string name="a_password_reset_email_will_be_sent_to_your_email_to_set_a_new_password">A Password reset Email will be sent to your email to set a new Password.</string>
+    <string name="send">Send</string>
+    <string name="email_sent_successfully">Email sent successfully!</string>
+    <string name="login_with_phone">Log in with Phone</string>
+    <string name="verify_your_number">Verify your Number</string>
+    <string name="did_not_receive_code">Didn\'t receive Code? Send again.</string>
+    <string name="verify">Verify</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="you_are_offline">You are offline!</string>
+    <string name="code_sent_to_number">Code sent to <xliff:g example="+201156004995">%s</xliff:g></string>
+    <string name="log_out">Log out</string>
+    <string name="cancel">Cancel</string>
+    <string name="cancel_phone_login">Cancel Phone Login?</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="retry">Retry</string>
+    <string name="send_code_again">Send code again?</string>
+    <string name="verify_your_email">Verify your Email</string>
+    <string name="a_verification_email_was_sent_to_your_email">A verification Email was sent to your Email</string>
+    <string name="i_did_not_receive_a_verification_email">I didn\'t receive a Verification Email</string>
+    <string name="cancel_login">Cancel Login?</string>
+    <string name="send_email_again">Send Email again?</string>
+    <string name="too_many_requests_may_result_in_your_account_being_unable_to_send_requests_for_a_while">Too many requests may result in your account being unable to send requests for a while!</string>
+    <string name="not_verified_yet_check_the_link_sent_to_your_email">Not verified! Check the link sent to your Email</string>
+    <string name="verification_email_sent_successfully">Verification Email sent successfully!</string>
+    <string name="something_went_wrong">Something went wrong!</string>
+    <string name="cancel_sending_email">Cancel sending Email?</string>
+    <string name="cancel_signing_up">Cancel signing up?</string>
+    <string name="or">Or</string>
+    <string name="register">Register</string>
+    <string name="log_in">Log In</string>
+    <string name="welcome">Welcome</string>
+    <string name="template_description">This is a login template created by @ameencarpenter</string>
+
+    <string name="label_email">Email*</string>
+    <string name="label_password">Password*</string>
+    <string name="label_confirm_password">Confirm Password*</string>
+    <string name="label_phone_number">Phone Number*</string>
+
+    <string name="error_phone_number_is_required">Phone number is required!</string>
+    <string name="not_a_valid_number">Not a valid Number!</string>
+    <string name="error_passwords_do_not_match">Passwords don\'t match!</string>
+    <string name="error_password_confirmation_is_required">Password confirmation is required!</string>
+    <string name="error_email_is_required">Email is required!</string>
+    <string name="error_not_a_valid_email">Not a valid Email!</string>
+    <string name="error_verification_code_is_required">Verification code is required!</string>
+    <string name="error_at_least_6_characters">At least 6 characters!</string>
+    <string name="error_password_is_required">Password is required!</string>
+
+    //configurations
+    <string name="google_cloud_server_client_id" translatable="false">"131810820705-361gms6ip1irs83esv49dr0dcg9hpe53.apps.googleusercontent.com"</string>
+    <string name="facebook_app_id" translatable="false">481486496312073</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb481486496312073</string>
+</resources>

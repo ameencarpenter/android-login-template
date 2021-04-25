@@ -11,7 +11,9 @@ import com.carpenter.login.*
 import com.carpenter.login.databinding.FragmentEmailVerificationBinding
 import com.carpenter.login.main.MainActivity
 import com.carpenter.login.utils.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EmailVerificationFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentEmailVerificationBinding? = null

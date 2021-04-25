@@ -6,10 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.carpenter.login.R
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

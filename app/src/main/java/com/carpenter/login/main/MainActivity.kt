@@ -8,7 +8,9 @@ import com.carpenter.login.login.LoginActivity
 import com.carpenter.login.utils.observe
 import com.carpenter.login.utils.openActivity
 import com.carpenter.login.utils.showSnackBar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

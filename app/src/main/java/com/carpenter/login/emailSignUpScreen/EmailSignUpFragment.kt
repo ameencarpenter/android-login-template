@@ -13,7 +13,9 @@ import com.carpenter.login.login.onTextChange
 import com.carpenter.login.login.value
 import com.carpenter.login.main.MainActivity
 import com.carpenter.login.utils.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EmailSignUpFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentEmailSignUpBinding? = null

@@ -1,19 +1,23 @@
 package com.carpenter.login.accountRecoveryScreen
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carpenter.login.utils.connectedOrThrow
-import com.carpenter.login.login.AuthRepository
 import com.carpenter.login.login.EmailException
+import com.carpenter.login.login.UserRepository
 import com.carpenter.login.login.validEmailOrThrow
+import com.carpenter.login.utils.connectedOrThrow
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AccountRecoveryViewModel(private val app: Application) : AndroidViewModel(app) {
-
-    private val authRepo = AuthRepository.getInstance()
+@HiltViewModel
+class AccountRecoveryViewModel @Inject constructor(
+    private val context: Application,
+    private val userRepo: UserRepository
+) : ViewModel() {
 
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
@@ -38,9 +42,9 @@ class AccountRecoveryViewModel(private val app: Application) : AndroidViewModel(
     fun sendPasswordResetEmail(email: String) = viewModelScope.launch {
         try {
             _loading.postValue(true)
-            app.connectedOrThrow()
-            app.validEmailOrThrow(email)
-            authRepo.sendPasswordResetEmail(email)
+            context.connectedOrThrow()
+            context.validEmailOrThrow(email)
+            userRepo.sendPasswordResetEmail(email)
             _emailSent.postValue(true)
         } catch (e: EmailException) {
             _emailError.postValue(e.message)

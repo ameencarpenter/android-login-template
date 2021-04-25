@@ -7,14 +7,18 @@ import com.carpenter.login.login.*
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PhoneLoginViewModel(private val app: Application) : AndroidViewModel(app) {
+@HiltViewModel
+class PhoneLoginViewModel @Inject constructor(
+    private val app: Application,
+    private val userRepo: UserRepository
+) : ViewModel() {
 
     //note: You have to enable SafetyNet for phone login to work correctly:
     //https://firebase.google.com/docs/auth/android/phone-auth#enable-app-verification
-
-    private val authRepo = AuthRepository.getInstance()
 
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
@@ -113,7 +117,7 @@ class PhoneLoginViewModel(private val app: Application) : AndroidViewModel(app) 
     private fun login(credential: PhoneAuthCredential) = viewModelScope.launch {
         try {
             _loading.postValue(true)
-            authRepo.signInWithCredential(credential)
+            userRepo.signInWithCredential(credential)
             _signedIn.postValue(true)
         } catch (e: Exception) {
             _error.postValue(e.localizedMessage)

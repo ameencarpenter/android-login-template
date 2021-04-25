@@ -1,17 +1,18 @@
 package com.carpenter.login.emailSignUpScreen
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.carpenter.login.utils.connectedOrThrow
 import com.carpenter.login.login.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EmailSignUpViewModel(private val app: Application) : AndroidViewModel(app) {
-
-    private val authRepo = AuthRepository.getInstance()
+@HiltViewModel
+class EmailSignUpViewModel @Inject constructor(
+    private val app: Application,
+    private val userRepo: UserRepository
+) : ViewModel() {
 
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
@@ -54,7 +55,7 @@ class EmailSignUpViewModel(private val app: Application) : AndroidViewModel(app)
             app.validEmailOrThrow(email)
             app.validPasswordOrThrow(password)
             app.validConfirmedPasswordOrThrow(password, confirmedPassword)
-            authRepo.signUpWithEmail(email, password)
+            userRepo.signUpWithEmail(email, password)
             _signedIn.postValue(true)
         } catch (e: EmailException) {
             _emailError.postValue(e.message)
@@ -69,5 +70,5 @@ class EmailSignUpViewModel(private val app: Application) : AndroidViewModel(app)
         }
     }
 
-    fun isUserVerified(): Boolean = authRepo.isUserVerified()
+    fun isUserVerified(): Boolean = userRepo.isUserVerified()
 }

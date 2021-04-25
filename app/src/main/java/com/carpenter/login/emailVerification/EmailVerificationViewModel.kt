@@ -1,19 +1,20 @@
 package com.carpenter.login.emailVerification
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.carpenter.login.R
-import com.carpenter.login.login.AuthRepository
+import com.carpenter.login.login.UserRepository
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EmailVerificationViewModel(private val app: Application) : AndroidViewModel(app) {
-
-    private val authRepo = AuthRepository.getInstance()
+@HiltViewModel
+class EmailVerificationViewModel @Inject constructor(
+    private val app: Application,
+    private val userRepo: UserRepository
+) : ViewModel() {
 
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
@@ -37,15 +38,15 @@ class EmailVerificationViewModel(private val app: Application) : AndroidViewMode
         _error.value = null
     }
 
-    fun onEmailSentHandled(){
+    fun onEmailSentHandled() {
         _emailSentAgain.value = false
     }
 
     fun verify() = viewModelScope.launch {
         try {
             _loading.postValue(true)
-            authRepo.reloadUser()
-            if (authRepo.isUserVerified()) {
+            userRepo.reloadUser()
+            if (userRepo.isUserVerified()) {
                 _verified.postValue(true)
             } else {
                 _error.postValue(app.getString(R.string.not_verified_yet_check_the_link_sent_to_your_email))
@@ -60,7 +61,7 @@ class EmailVerificationViewModel(private val app: Application) : AndroidViewMode
     fun sendAgain() = viewModelScope.launch {
         try {
             _loading.postValue(true)
-            authRepo.sendEmailVerification()
+            userRepo.sendEmailVerification()
             _emailSentAgain.postValue(true)
         } catch (e: Exception) {
             _error.postValue(e.message)
@@ -72,7 +73,7 @@ class EmailVerificationViewModel(private val app: Application) : AndroidViewMode
     fun signOut() = viewModelScope.launch {
         try {
             _loading.postValue(true)
-            authRepo.signOut(app)
+            userRepo.signOut(app)
             _signedOut.postValue(true)
         } catch (e: Exception) {
             _error.postValue(e.message)

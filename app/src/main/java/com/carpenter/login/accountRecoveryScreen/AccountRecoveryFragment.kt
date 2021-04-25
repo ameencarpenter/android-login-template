@@ -12,7 +12,9 @@ import com.carpenter.login.databinding.FragmentAccountRecoveryBinding
 import com.carpenter.login.login.onTextChange
 import com.carpenter.login.login.value
 import com.carpenter.login.utils.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AccountRecoveryFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAccountRecoveryBinding? = null

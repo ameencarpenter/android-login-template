@@ -1,18 +1,22 @@
 package com.carpenter.login.main
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carpenter.login.login.AuthRepository
+import com.carpenter.login.login.UserRepository
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val app: Application) : AndroidViewModel(app) {
-
-    private val authRepository = AuthRepository.getInstance()
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val app: Application,
+    private val userRepo: UserRepository
+) : ViewModel() {
 
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
@@ -30,7 +34,7 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
     fun signOug() = viewModelScope.launch {
         try {
             _loading.postValue(true)
-            authRepository.signOut(app)
+            userRepo.signOut(app)
             _signedOut.postValue(true)
         } catch (e: Exception) {
             _error.postValue(e.message)
@@ -41,6 +45,6 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
 
     fun isUserSignedInAndVerified(): Boolean {
         val user = Firebase.auth.currentUser
-        return user != null && authRepository.isUserVerified()
+        return user != null && userRepo.isUserVerified()
     }
 }

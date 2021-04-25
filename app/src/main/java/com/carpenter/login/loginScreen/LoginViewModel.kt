@@ -1,20 +1,23 @@
 package com.carpenter.login.loginScreen
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.carpenter.login.login.*
 import com.carpenter.login.utils.connectedOrThrow
 import com.facebook.AccessToken
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @Suppress("SpellCheckingInspection")
-class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val app: Application,
+    private val userRepo: UserRepository
+) : ViewModel() {
 
     //note: You have to add SHA1 for google login to work.
     //To get SHA1 for debug mode, run this: keytool -list -v -keystore C:\Users\sheri\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
@@ -22,8 +25,6 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
     //to get SHA1 for release mode, run this: keytool -list -v -alias keytstore -keystore F:\Ameen\upload-keystore.jks -alias upload
     //keystore path example: F:\Ameen\upload-keystore.jks
     //keystore alias name example: upload
-
-    private val authRepo = AuthRepository.getInstance()
 
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
@@ -56,7 +57,7 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
         try {
             app.connectedOrThrow()
             _loading.postValue(true)
-            authRepo.loginWithGoogle(idToken)
+            userRepo.loginWithGoogle(idToken)
             _signedIn.postValue(true)
         } catch (e: Exception) {
             _error.postValue(e.message)
@@ -79,11 +80,11 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
             app.connectedOrThrow()
             _loading.postValue(true)
             val credential = FacebookAuthProvider.getCredential(token.token)
-            authRepo.signInWithCredential(credential)
+            userRepo.signInWithCredential(credential)
             _signedIn.postValue(true)
         } catch (e: Exception) {
             //if the error from firebase, log out from facebook.
-            authRepo.signOutFromFacebook()
+            userRepo.signOutFromFacebook()
             _error.postValue(e.message)
         } finally {
             _loading.postValue(false)
@@ -97,7 +98,7 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
             app.connectedOrThrow()
             app.validEmailOrThrow(email)
             app.validPasswordOrThrow(password)
-            authRepo.signInWithEmail(email, password)
+            userRepo.signInWithEmail(email, password)
             _signedIn.postValue(true)
         } catch (e: EmailException) {
             _emailError.postValue(e.message)
@@ -122,6 +123,6 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
         _loading.postValue(false)
     }
 
-    fun isUserVerified() = authRepo.isUserVerified()
+    fun isUserVerified() = userRepo.isUserVerified()
 
 }

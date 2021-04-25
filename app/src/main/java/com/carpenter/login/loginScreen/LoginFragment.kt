@@ -22,8 +22,10 @@ import com.facebook.login.LoginResult
 import com.google.firebase.auth.OAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class LoginFragment : Fragment(), View.OnClickListener {
 
     //todo: bug fix; confirmation dialog doesn't return result on rotation, but after rotating back.

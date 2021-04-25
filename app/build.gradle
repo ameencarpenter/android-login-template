@@ -3,7 +3,8 @@ plugins {
     id 'kotlin-android'
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
-    id "androidx.navigation.safeargs.kotlin"
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -84,4 +85,8 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 }

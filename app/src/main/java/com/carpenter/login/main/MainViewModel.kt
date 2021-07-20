@@ -31,7 +31,7 @@ class MainViewModel @Inject constructor(
         _error.value = null
     }
 
-    fun signOug() = viewModelScope.launch {
+    fun signOut() = viewModelScope.launch {
         try {
             _loading.postValue(true)
             userRepo.signOut(app)

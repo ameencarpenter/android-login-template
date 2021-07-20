@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
             openActivity(LoginActivity::class.java, enterFromLeft = true)
         }
 
-        binding.logOut.setOnClickListener { model.signOug() }
+        binding.logOut.setOnClickListener { model.signOut() }
 
         observe(model.error) {
             showSnackBar(binding.logOut, it ?: return@observe) {
-                model.signOug()
+                model.signOut()
             }
         }
 

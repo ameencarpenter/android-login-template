@@ -15,6 +15,7 @@
 
         <LinearLayout
             android:id="@+id/login"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -93,7 +94,6 @@
         <LinearLayout
             android:id="@+id/verification"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:hint="@string/verification_code">
+                android:hint="@string/label_verification_code">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/verification_code"

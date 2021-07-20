@@ -3,6 +3,7 @@ package com.carpenter.login.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.carpenter.login.databinding.ActivityMainBinding
 import com.carpenter.login.login.LoginActivity
 import com.carpenter.login.utils.observe
@@ -31,6 +32,10 @@ class MainActivity : AppCompatActivity() {
             showSnackBar(binding.logOut, it ?: return@observe) {
                 model.signOut()
             }
+        }
+
+        observe(model.loading) {
+            binding.progress.isVisible = it
         }
 
         observe(model.signedOut) {

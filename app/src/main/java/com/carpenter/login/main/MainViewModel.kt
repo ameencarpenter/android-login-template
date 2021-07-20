@@ -27,10 +27,6 @@ class MainViewModel @Inject constructor(
     private val _signedOut = MutableLiveData(false)
     val signedOut: LiveData<Boolean> = _signedOut
 
-    fun removeError() {
-        _error.value = null
-    }
-
     fun signOut() = viewModelScope.launch {
         try {
             _loading.postValue(true)

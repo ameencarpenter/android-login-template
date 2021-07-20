@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
+<!--    <color name="purple_200">#FFBB86FC</color>-->
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
@@ -14,9 +14,6 @@
         <item>#00f</item>
     </array>
 
-    <color name="dark_500">#175F6C</color>
-    <color name="dark_700">#0D343A</color>
-<!--    <color name="dark_700">#180022</color>-->
-    <color name="dark_secondary">#FFD369</color>
-    <color name="dark_variant">#EEEEEE</color>
+    <color name="dark_500">#946BC6</color>
+    <color name="dark_700">#513A6E</color>
 </resources>

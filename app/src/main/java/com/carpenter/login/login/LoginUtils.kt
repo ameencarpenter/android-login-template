@@ -73,7 +73,7 @@ val EditText.value get() = text.toString().trim()
 
 fun Context.getCountryCode(): String? {
     val telManager = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-    val countryId = telManager.simCountryIso.toUpperCase(Locale.getDefault())
+    val countryId = telManager.simCountryIso.uppercase(Locale.getDefault())
     return COUNTRY_CODES[countryId]
 }
 

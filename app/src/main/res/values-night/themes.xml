@@ -14,7 +14,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
-        <item name="colorSurface">#333</item>
+        <item name="colorSurface">#222222</item>
         <item name="colorOnSurface">#999999</item>
     </style>
 </resources>

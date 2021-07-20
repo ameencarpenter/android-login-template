@@ -1,6 +1,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Carpenter Login</string>
-    <string name="app_description">A Login Template illustrating login best practices in Android development</string>
+    <string name="app_description">A login template with the most common login methods built with Firebase.</string>
     <string name="continue_with_twitter">Continue with Twitter</string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="continue_with_phone">Continue with Phone</string>
